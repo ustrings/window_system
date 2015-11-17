@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width" />
+	<title>精准弹窗控制平台待审核管理</title>
+	<link rel="stylesheet" href="/resources/css/layout.css" type="text/css" media="screen" />
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	
+	<![endif]-->
+	<script src="/resources/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<script src="/resources/js/hideshow.js" type="text/javascript"></script>
+	<script src="/resources/js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/resources/js/jquery.equalHeight.js"></script>
+	<script src="/resources/js/common.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/resources/js/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() 
+    	{ 
+      	  $(".tablesorter").tablesorter(); 
+   	 } 
+	);
+	$(document).ready(function() {
+
+	//When page loads...
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+
+	//On Click Event
+	$("ul.tabs li").click(function() {
+
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+
+		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active ID content
+		return false;
+	});
+
+});
+    </script>
+    <script type="text/javascript">
+    $(function(){
+        $('.column').equalHeight();
+    });
+</script>
+
+</head>
+
+
+<body>
+
+	<header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="role.html"><img src="/resources/assets/index_logo.png" style="position:relative;top:8px; width:300px;"/></a></h1>
+			<h2 class="section_title"></h2><div class="btn_view_site"><a href="login.html">注销</a></div>
+		</hgroup>
+	</header> <!-- end of header bar -->
+	
+	<section id="secondary_bar">
+		<div class="user">
+			<p>John Doe (<a href="#">3 Messages</a>)</p>
+			<!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
+		</div>
+		<div class="breadcrumbs_container">
+			<article class="breadcrumbs"><a href="role.html">首页</a> <div class="breadcrumb_divider"></div> <a class="current">平台待审核管理</a></article>
+		</div>
+	</section><!-- end of secondary bar -->
+	
+	<aside id="sidebar" class="column">
+		<hr/>
+		<!--<h3>角色管理</h3>
+		<ul class="toggle">
+			<li class="icn_add_user"><a href="#">Add New User</a></li>
+			<li class="icn_view_users"><a href="#" class="current_a">角色维护</a></li>
+			<!--<li class="icn_profile"><a href="#">Your Profile</a></li>
+		</ul>-->
+		<h3>广告审核管理</h3>
+		<ul class="toggle">
+			<li class="icn_view_users"><a href="role.html" class="none_current">角色维护</a></li>
+			<li class="icn_new_article"><a href="check_soon.html" class="current_a">待审核管理</a></li>
+			<!--<li class="icn_edit_article"><a href="#" class="none_current">审核失败管理</a></li>-->
+			<li class="icn_categories"><a href="check_history.html" class="none_current">审核进度查看</a></li>
+			<!--<li class="icn_tags"><a href="#">Tags</a></li>-->
+		</ul>
+		<h3>广告统计管理</h3>
+		<ul class="toggle">
+			<li class="icn_folder"><a href="ad_count.html" class="none_current">广告统计列表查看</a></li>
+			<li class="icn_photo"><a href="put_detail.html" class="none_current">广告投放明细</a></li>
+			<li class="icn_audio"><a href="put_report.html" class="none_current">广告投放报告</a></li>
+			<!--<li class="icn_audio"><a href="#">Audio</a></li>
+			<li class="icn_video"><a href="#">Video</a></li>-->
+		</ul>
+		<h3>广告投放管理</h3>
+		<ul class="toggle">
+			<li class="icn_settings"><a href="whiteList.html" class="none_current">域名白名单管理</a></li>
+			<li class="icn_security_2"><a href="people_whiteList.html" class="none_current">用户白名单管理</a></li>
+			<li class="icn_jump_back"><a href="put_control.html" class="none_current">投放控制设置</a></li>
+		</ul>
+		<h3>账户管理</h3>
+		<ul class="toggle">
+			<li class="icn_settings"><a href="agent_manager.html" class="none_current">代理商子账户管理</a></li>
+			<li class="icn_security"><a href="sys_agent_manager.html" class="none_current">管理员账户管理</a></li>
+			<!--<li class="icn_jump_back"><a href="#">Logout</a></li>-->
+		</ul>
+	</aside><!-- end of sidebar -->
+	
+	<section id="main" class="column">
+		<div class="module_content">
+			<div class="seach_one">
+					<span class="search_span">广告名称：</span>
+					<input type="text" name="text" class="search_inp" />
+					<span class="search_span">审核状态：</span>
+					<select>
+						<option>--请选择--</option>
+						<option>待审核</option>
+					</select>
+					<!--<span class="search_span">尺寸：</span>
+					<select>
+						<option>--请选择--</option>
+						<option>300*200</option>
+						<option>300*300</option>
+						<option>500*700</option>
+						<option>1000*500</option>
+						<option>700*300</option>
+					</select>
+					<span class="search_span">类型：</span>
+					<select>
+						<option>--请选择--</option>
+						<option>.GIF</option>
+						<option>.JPG</option>
+						<option>.BMP</option>
+						<option>.PNG</option>
+						<option>.SWF</option>
+					</select>-->
+			</div>
+			<div class="seach_one">
+				<div class="search_DIV_time" style="width:90%;">
+					<span class="search_span">起止时间：</span>
+					<input id="start_date" name="startTime" type="text" class="Wdate" value="" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'end_date\')}'})" readonly="readonly" />
+					<span class="search_span_value">至</span>
+					<input id="end_date" name="endTime" 　type="text" class="Wdate" value="" onclick="WdatePicker({minDate:'#F{$dp.$D(\'start_date\')}'})" readonly="readonly" />
+					<input type="submit" value="查询" class="alt_btn" style="margin-left:30px">
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<input type="submit" value="批量审核" id="all_check" style="float:left;margin: 20px 3% 0 3%;">
+		<article class="module width_3_quarter" style="margin-top:5px;">
+			<div class="tab_container">
+				<div id="tab1" class="tab_content">
+					<table class="tablesorter" cellspacing="0"> 
+						<thead> 
+							<tr> 
+								<th><input type="checkbox" /></th>
+								<th>广告名称</th> 
+								<th>投放链接</th> 
+								<!--<th>落地链接</th> 
+								<th>尺寸</th> 
+								<th>类型</th>--> 
+								<th>审核状态</th> 
+								<th>更新时间</th> 
+								<th>操作</th> 
+							</tr>
+						</thead> 
+						<tbody> 
+							<tr class="tbody_tr">
+								<td><input type="checkbox" /></td>
+								<td>立白洗衣液</td> 
+								<td>
+									<a href="http://www.cli.com/55/66" class="materialName">http://www.cli.com/55/66</a>
+									<!--点击批量审核弹层结束-->
+									<div id="materialViewDiv" class="box span8" style="z-index: 999; position: absolute; background: none repeat scroll 0% 0% rgb(241, 241, 241);left:870px;top:300px;display: none;">
+										<div class="box-content">    
+											<div class="span8">
+												<div><img src="images/cat-thumb.jpg"/></div>								
+											</div>                      
+										</div>
+									</div>
+								</td> 
+								<!--<td>http://www.baidu.com</td> 
+								<td>300x400</td> 
+								<td>.JPG</td> -->
+								<td>待审核</td> 
+								<td>2014-5-11 15:20:36</td>  
+								<td><input type="image" title="审核" id="add_role" src="images/icn_check.png" ></td> 
+							</tr> 
+							<tr class="tbody_tr"> 
+								<td><input type="checkbox" /></td> 
+								<td>立白洗衣液</td> 
+								<td>
+									<a href="http://www.cli.com/55/66" class="materialName">http://www.cli.com/55/66</a>
+									<!--点击批量审核弹层结束-->
+									<div id="materialViewDiv" class="box span8" style="z-index: 999; position: absolute; background: none repeat scroll 0% 0% rgb(241, 241, 241);left:870px;top:300px;display: none;">
+										<div class="box-content">    
+											<div class="span8">
+												<div><img src="images/cat-thumb.jpg"/></div>								
+											</div>                      
+										</div>
+									</div>
+								</td> 
+								<!--<td>http://www.baidu.com</td> 
+								<td>300x400</td> 
+								<td>.JPG</td> -->
+								<td>待审核</td> 
+								<td>2014-5-11 15:20:36</td> 
+								<td><input type="image" title="审核" id="add_role" src="images/icn_check.png"></td>  
+							</tr>
+							<tr class="tbody_tr"> 
+								<td><input type="checkbox" /></td> 
+								<td>立白洗衣液</td> 
+								<td>
+									<a href="http://www.cli.com/55/66" class="materialName">http://www.cli.com/55/66</a>
+									<!--点击批量审核弹层结束-->
+									<div id="materialViewDiv" class="box span8" style="z-index: 999; position: absolute; background: none repeat scroll 0% 0% rgb(241, 241, 241);left:870px;top:300px;display: none;">
+										<div class="box-content">    
+											<div class="span8">
+												<div><img src="images/cat-thumb.jpg"/></div>								
+											</div>                      
+										</div>
+									</div>
+								</td> 
+								<!--<td>http://www.baidu.com</td> 
+								<td>300x400</td> 
+								<td>.JPG</td> -->
+								<td>待审核</td> 
+								<td>2014-5-11 15:20:36</td> 
+								<td><input type="image" title="审核" id="add_role" src="images/icn_check.png"></td>  
+							</tr> 
+							<tr class="tbody_tr"> 
+								<td><input type="checkbox" /></td> 
+								<td>立白洗衣液</td> 
+								<td>
+									<a href="http://www.cli.com/55/66" class="materialName">http://www.cli.com/55/66</a>
+									<!--点击批量审核弹层结束-->
+									<div id="materialViewDiv" class="box span8" style="z-index: 999; position: absolute; background: none repeat scroll 0% 0% rgb(241, 241, 241);left:870px;top:300px;display: none;">
+										<div class="box-content">    
+											<div class="span8">
+												<div><img src="images/cat-thumb.jpg"/></div>								
+											</div>                      
+										</div>
+									</div>
+								</td> 
+								<!--<td>http://www.baidu.com</td> 
+								<td>300x400</td> 
+								<td>.JPG</td> -->
+								<td>待审核</td> 
+								<td>2014-5-11 15:20:36</td> 
+								<td><input type="image" title="审核" id="add_role" src="images/icn_check.png"></td>  
+							</tr>
+							<tr class="tbody_tr"> 
+								<td><input type="checkbox" /></td> 
+								<td>立白洗衣液</td> 
+								<td>
+									<a href="http://www.cli.com/55/66" class="materialName">http://www.cli.com/55/66</a>
+									<!--点击批量审核弹层结束-->
+									<div id="materialViewDiv" class="box span8" style="z-index: 999; position: absolute; background: none repeat scroll 0% 0% rgb(241, 241, 241);left:870px;top:300px;display: none;">
+										<div class="box-content">    
+											<div class="span8">
+												<div><img src="images/cat-thumb.jpg"/></div>								
+											</div>                      
+										</div>
+									</div>
+								</td> 
+								<!--<td>http://www.baidu.com</td> 
+								<td>300x400</td> 
+								<td>.JPG</td> -->
+								<td>待审核</td> 
+								<td>2014-5-11 15:20:36</td> 
+								<td><input type="image" title="审核" id="add_role" src="images/icn_check.png"></td>  
+							</tr> 
+						</tbody> 
+					</table>
+				</div>
+			</div>
+		</article>
+		
+	</section>
+		<div id="floatBoxBg"></div>
+		<!--点击审核弹层开始-->
+		<form action="" method="get">
+		<div class="tcLsyer" style="display:none;">
+			<div class="tcLsyer_title">
+				<span>审核</span>
+				<a href="#" class="close"></a>
+			</div>
+			<div class="tcLsyer_content">
+				<div class="content_DIV">
+					<span class="is_check">广告名称：</span>
+					<input type="text" name="text" class="tc_inp" />
+				</div>
+				<div class="content_DIV">
+					<span class="is_check">投放链接：</span>
+					<input type="text" name="text" class="tc_inp" />
+				</div>
+				<div class="content_DIV">
+					<span class="is_check">是否通过审核：</span>
+					<input type="radio" name="radio" class="radio_btn" id="radio_yes"/>
+					<span class="value_span">是</span>
+					<input type="radio" name="radio" class="radio_btn" id="radio_no"/>
+					<span  class="value_span">否</span>
+				</div>
+				<div class="content_DIV_sugess" id="sugess_one" style="display:none;">
+					<span class="is_check">审核意见：</span>
+					<textarea cols="30" rows="5"></textarea>
+				</div>
+				<div class="content_DIV">
+					<input type="submit" value="确定" class="alt_btn" style="margin-left:30%;"/>
+					<input type="reset" value="重置" />
+				</div>
+			</div>
+		</div>
+		</form>
+		<!--点击审核弹层结束-->
+		<!--点击批量审核弹层开始-->
+		<div class="tcLsyer_all" style="display:none;">
+			<div class="tcLsyer_title">
+				<span>批量审核</span>
+				<a href="#" class="close_all"></a>
+			</div>
+			<div class="tcLsyer_content">
+				<div class="content_DIV">
+					<span class="is_check">是否通过审核：</span>
+					<input type="radio" name="radio" class="radio_btn" id="is_all_yes"/>
+					<span class="value_span">是</span>
+					<input type="radio" name="radio" class="radio_btn" id="radio_all_no" />
+					<span  class="value_span">否</span>
+				</div>
+				<div class="content_DIV_sugess" id="suggess_all" style="display:none;">
+					<span class="is_check">审核意见：</span>
+					<textarea cols="30" rows="5"></textarea>
+				</div>
+				<div class="content_DIV">
+					<input type="submit" value="确定" class="alt_btn" style="margin-left:30%;"/>
+				<input type="submit" value="重置" />
+				</div>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				<!--单个审核编辑-->
+				$("#radio_yes").click(function(){
+					$("#sugess_one").hide();
+				});
+				<!--批量审核编辑-->
+				$("#is_all_yes").click(function(){
+					$("#suggess_all").hide();
+				});
+			}).on("mouseover",".materialName",function(e){
+					var top=$(this).position().top+20;
+					var left=$(this).position().left+30;
+					$("#materialViewDiv").css({"position":"absolute","top":top+"px","left":left+"px"}).show();
+				}).on("mouseout",".materialName",function(){
+					//var id = $(this).attr("materialId");
+					$("#materialViewDiv").hide();
+				});
+		</script>
+		<!--图片加载时等比例缩放-->
+			
+</body>
+
+</html>
