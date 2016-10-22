@@ -1,0 +1,42 @@
+<%@ page language="java" import="java.util.List" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>错误页面</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+	body{background:url(/emp/website/sglcorpFrame/images/indexbg.png) top center #e5fcff no-repeat;}
+	</style>
+  </head>
+  
+  <body>
+         <div><center><font color="red">该功能不能使用，请联系管理员！</font> </center></div>
+  <script type="text/javascript">
+			var paddd=window.parent;
+			var docUrl = window.location.href;
+			if(paddd.location.href==docUrl)
+			{
+				var index=0;
+				while(paddd.location.href!=docUrl && index<6)
+				{
+					docUrl=paddd.location.href;
+					paddd=paddd.parent;
+					index++;
+				}
+				docUrl = paddd.location.href;
+				var urls = docUrl.split("/"); 
+				docUrl = urls[0] + "//" + urls[2] + "/" + urls[3];
+				paddd.location.href=docUrl;
+			}
+
+	</script>
+  </body>
+</html>

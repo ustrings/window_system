@@ -1,0 +1,14 @@
+<%@ page language="java" import="java.util.List" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+
+String skin = (String)session.getAttribute("stlyeSkin");
+%>
+<link href="<%=path %>/common/css/frame.css" rel="stylesheet" type="text/css" />
+<link href="<%=skin %>/frame.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<%=path %>/common/widget/jqueryui/css/jquery.ui.all.css" />
+<link rel="stylesheet" href="<%=skin %>/newjqueryui.css" type="text/css" >
+<script src="<%=path %>/common/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="<%=path %>/common/js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="<%=path %>/common/widget/jqueryui/jquery-ui-1.8.15.custom.min.js"></script>
+<script type="text/javascript" src="<%=path %>/common/widget/jqueryui/jquery.bgiframe-2.1.2.js"></script>

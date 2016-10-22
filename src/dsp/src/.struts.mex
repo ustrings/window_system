@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="default" location="0,0" size="0,0">
+    <action name="DspUserAction" location="0,0" size="0,0">
+      <result name="loginsuccess">
+        <resourceEdge source="loginsuccess" routing="0" target="login.jsp" />
+      </result>
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index.jsp" />
+      </result>
+      <result name="register">
+        <resourceEdge source="register" routing="0" target="register.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="DspAdAction" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="query.jsp" />
+      </result>
+      <result name="needCount">
+        <resourceEdge source="needCount" routing="0" target="querystat.jsp" />
+      </result>
+      <result name="adDetail">
+        <resourceEdge source="adDetail" routing="0" target="detail.jsp" />
+      </result>
+      <result name="errorPrio">
+        <resourceEdge source="errorPrio" routing="0" target="queryadd.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="DspDomainAction" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="domainstat.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="urlController" location="0,0" size="0,0">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="advert.jsp" />
+      </result>
+      <result name="error">
+        <resourceEdge source="error" routing="0" target="error.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="index.jsp" path="/index.jsp" location="0,0" size="0,0" />
+  <webResource name="success.jsp" path="/success.jsp" location="0,0" size="0,0" />
+  <webResource name="login.jsp" path="/login.jsp" location="0,0" size="0,0" />
+  <webResource name="error.jsp" path="/error.jsp" location="0,0" size="0,0" />
+  <webResource name="login.jsp" path="/xtgl/view/login.jsp" location="0,0" size="0,0" />
+  <webResource name="index.jsp" path="/xtgl/view/Admin/index.jsp" location="0,0" size="0,0" />
+  <webResource name="query.jsp" path="/xtgl/view/Admin/query.jsp" location="0,0" size="0,0" />
+  <webResource name="querystat.jsp" path="/xtgl/view/Admin/querystat.jsp" location="0,0" size="0,0" />
+  <webResource name="domainstat.jsp" path="/xtgl/view/Admin/domainstat.jsp" location="0,0" size="0,0" />
+  <webResource name="detail.jsp" path="/xtgl/view/Admin/detail.jsp" location="0,0" size="0,0" />
+  <webResource name="queryadd.jsp" path="/xtgl/view/Admin/queryadd.jsp" location="0,0" size="0,0" />
+  <webResource name="advert.jsp" path="/xtgl/view/Advert/advert.jsp" location="0,0" size="0,0" />
+  <webResource name="register.jsp" path="/xtgl/view/Login/register.jsp" location="0,0" size="0,0" />
+  <webResource name="error.jsp" path="/xtgl/view/error.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

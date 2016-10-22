@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/cmmi/!svn/ver/57672/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common
+END
+glo_operWeb.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/glo_operWeb.jsp
+END
+forbidLogin.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/forbidLogin.html
+END
+blank.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/blank.jsp
+END
+glo_operPageField.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/glo_operPageField.jsp
+END
+commonfile.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/commonfile.jsp
+END
+deleteUser.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/deleteUser.html
+END
+errorLogin.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/errorLogin.html
+END
+no_dep_permission.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/no_dep_permission.jsp
+END
+aboutEmp.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/cmmi/!svn/ver/54077/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/aboutEmp.jsp
+END
+errors.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/errors.jsp
+END
+com_功能.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/com_%E5%8A%9F%E8%83%BD.jsp
+END
+logoutEmp.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/cmmi/!svn/ver/52763/07mdos/01dev/01code/trunk/web/mdoss/WebRoot/common/logoutEmp.html
+END

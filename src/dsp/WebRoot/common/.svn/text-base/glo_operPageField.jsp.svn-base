@@ -1,0 +1,346 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.montnets.emp.entity.system.LfPageField" %>
+<%@page import="com.montnets.emp.util.PageInfo"%>
+
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String iPath=request.getRequestURI().substring(0,request.getRequestURI().lastIndexOf("/"));
+	PageInfo pageInfo = new PageInfo();
+	pageInfo = (PageInfo) request.getAttribute("pageInfo");
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>页面控件维护</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="<%=path %>/common/css/frame.css" rel="stylesheet" type="text/css" />
+	<link href="<%=path %>/common/css/table.css" rel="stylesheet" type="text/css" />
+	<link href="<%=path %>/frame/frame2.5/skin/default/frame.css" rel="stylesheet" type="text/css" />
+	<link href="<%=path %>/frame/frame2.5/skin/default/table.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="<%=path %>/common/widget/jqueryui/css/jquery.ui.all.css">
+	<script>
+	 var total=<%=pageInfo.getTotalPage()%>;
+	 var pageIndex=<%=pageInfo.getPageIndex()%>;
+	 var pageSize=<%=pageInfo.getPageSize()%>;
+	 var totalRec=<%=pageInfo.getTotalRec()%>;
+	</script>
+	<style type="text/css">
+		
+		#setPageField table tr td
+		{
+			height: 30px;
+		}
+		.left
+		{
+			text-align: right;
+		}
+	</style>
+  </head>
+  
+  
+  <body>
+  	<div id="container" class="container">
+		<!-- header开始 -->
+			<div class="top">
+				<div id="top_right">
+					<div id="top_left"></div>
+					<div id="top_main">
+<%--						当前位置是：--%>
+					</div>
+				</div>
+			</div>
+			<!-- header结束 -->	
+		<div id="rContent" class="rContent">	
+	  		<br/>
+	  		<br/>
+	  		
+	  		<form id="addForm">
+						<div align="center">
+							<input type="button" value="新建" onclick="javascript:doAdd(0)" class="btnClass5"/>
+						</div>
+						
+			</form>			
+			<br>
+			<br/>
+			<div id="condition">
+			</div>
+		   	<form id="pageForm" action="glo_operPageFieldSvt.hts?method=find" method="post">
+				<center>
+				<table id="content" align="center" style="width: 90%">
+					<thead>
+						<tr>
+			   	 			<th>
+			   	 				模块编号
+			   	 			</th>
+			   	 			<th>
+			   	 				界面编号
+			   	 			</th>
+			   	 			<th>
+			   	 				控件编号
+			   	 			</th>
+			   	 			<th>
+			   	 				控件名称
+			   	 			</th>
+			   	 			<th>
+			   	 				控件词汇
+			   	 			</th>
+			   	 			<th>
+			   	 				控件类型
+			   	 			</th>
+			   	 			<th>
+			   	 				控件子项值
+			   	 			</th>
+			   	 			<th>
+			   	 				控件子项名称
+			   	 			</th>
+			   	 			<th>
+			   	 				控件是否显示
+			   	 			</th>
+			   	 			<th>
+			   	 				是否有子项
+			   	 			</th>
+			   	 			<th>
+			   	 				控件默认值
+			   	 			</th>
+			   	 			<th>
+			   	 				子项排序值
+			   	 			</th>
+			   	 			<th>
+			   	 				是否子项
+			   	 			</th>
+			   	 			<th colspan="2">
+			   	 				操作
+			   	 			</th>
+				   	 	</tr>
+					</thead>
+					<tbody>
+						<%
+						List<LfPageField> pageFieldList = (List<LfPageField>)request.getAttribute("pageFieldList");
+						if(pageFieldList!=null && pageFieldList.size()>0)
+						{
+							for(LfPageField pf : pageFieldList)
+							{								
+						%>
+								<tr>
+									<td>
+										<%=pf.getModleId()!=null?pf.getModleId():"-"%>
+									</td>
+									<td>
+										<%=pf.getPageId()!=null?pf.getPageId():"-"%>
+									</td>
+									<td>
+										<%=pf.getFieldId()!=null?pf.getFieldId():"-"%>
+									</td>
+									<td>
+										<%=pf.getFieldName()!=null?pf.getFieldName():"-"%>
+									</td>
+									<td>
+										<%=pf.getField()!=null?pf.getField():"-"%>
+									</td>
+									<td>
+										<%=pf.getFieldType()!=null?pf.getFieldType():"-"%>
+									</td>
+									<td>
+										<%=pf.getSubFieldValue()!=null?pf.getSubFieldValue():"-"%>
+									</td>
+									<td>
+										<%=pf.getSubFieldName()!=null?pf.getSubFieldName():"-"%>
+									</td>
+									<td>
+										<%=pf.getFiledShow()!=null?pf.getFiledShow():"-"%>
+									</td>
+									<td>
+										<%=pf.getSubField()!=null?pf.getSubField():"-"%>
+									</td>
+									<td>
+										<%=pf.getDefaultValue()!=null?pf.getDefaultValue():"-"%>
+									</td>
+									<td>
+										<%=pf.getSortValue()!=null?pf.getSortValue():"-"%>
+									</td>
+									<td>
+										<%=pf.getIsField()!=null?pf.getIsField():"-"%>
+									</td>
+									<td>
+										<a onclick="javascript:doEdit('1','<%=pf.getModleId()%>','<%=pf.getPageId()%>','<%=pf.getFieldId()%>','<%=pf.getFieldName()%>','<%=pf.getField()%>','<%=pf.getFieldType()%>','<%=pf.getSubFieldValue()%>','<%=pf.getSubFieldName()%>','<%=pf.getFiledShow()%>','<%=pf.getSubField()%>','<%=pf.getDefaultValue()%>','<%=pf.getSortValue()%>','<%=pf.getIsField()%>')" >修改</a>
+									</td>
+									<td>
+										<a onclick="doDel('<%=pf.getModleId()%>','<%=pf.getPageId()%>','<%=pf.getFieldId()%>','<%=pf.getFieldName()%>','<%=pf.getField()%>','<%=pf.getFieldType()%>','<%=pf.getSubFieldValue()%>','<%=pf.getSubFieldName()%>','<%=pf.getFiledShow()%>','<%=pf.getSubField()%>','<%=pf.getDefaultValue()%>','<%=pf.getSortValue()%>','<%=pf.getIsField()%>')">删除</a>
+									</td>
+								</tr>
+						<%
+							}
+							
+						}else
+						{
+						%>
+							<tr><td align="center" colspan="15">无记录</td></tr>
+						<%} %>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="15">
+								<div id="pageInfo"></div>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				</center>
+			</form>	
+			
+	
+				<div id="setPageField" title="设置页面控件" style="padding:5px;display:none;font-size: 12px;">
+				<center>
+				<br/>
+		        <table align="center">
+						<tr>
+							<td class="left" style="font-size: 14px;width: 100px;">
+								模块编号：
+							</td>
+							<td style="width: 180px;">
+								<input id="modleid" name="modleid" type="text"  maxlength="8" style="width: 150px;height:16px;font-size: 14px;"/> 
+							</td>
+							<td  class="left"  style="font-size: 14px;width: 100px;">
+								界面编号：
+							</td>
+							<td style="width: 180px;">
+								<input id="pageid" name="pageid" type="text" maxlength="12" style="width: 150px;height: 16px;font-size: 14px;"/> 						
+							</td>
+						</tr>
+						<tr>
+							<td class="left"  style="font-size: 14px;width: 100px;">
+								控件编号：
+							</td>
+							<td>
+								<input id="fieldid" name="fieldid" type="text"  maxlength="8" style="width: 150px;height:16px;font-size: 14px;"/> 
+							</td>
+							<td  class="left"  style="font-size: 14px;">
+								控件名称：
+							</td>
+							<td>
+								<input id="fieldname" name="fieldname" type="text" maxlength="12" style="width: 150px;height: 16px;font-size: 14px;"/> 
+							</td>
+						</tr>
+						<tr>
+							<td  class="left"  style="font-size: 14px;">
+								控件词汇：
+							</td>
+							<td>
+								<input id="field" name="field" type="text"  maxlength="8" style="width: 150px;height:16px;font-size: 14px;"/> 
+							</td>
+							<td  class="left" style="font-size: 14px;">
+								控件类型：
+							</td>
+							<td>
+								<select id="fieldtype" name="fieldtype" style="width: 154px;height: 22px;font-size: 14px;">
+									<option value="1">下拉列表</option>
+									<option value="2">单选控件</option>
+									<option value="3">多选控件</option>
+									<option value="4">文本控件</option>							
+									<option value="5">按钮控件</option>
+									<option value="6">超链接</option>						
+								</select>
+							</td>
+						</tr>
+						<tr>						
+							<td class="left"  style="font-size: 14px;">
+								控件是否显示：
+							</td>
+							<td>
+								<select id="filedshow" name="filedshow" style="width: 154px;height: 22px;font-size: 14px;">
+									<option value="0">是</option>
+									<option value="1">否</option>
+								</select>
+							</td>
+							<td class="left"  style="font-size: 14px;">
+								是否有子项：
+							</td>
+							<td>
+								<select id="subfield" name="subfield" style="width: 154px;height: 22px;font-size: 14px;">
+									<option value="0">是</option>
+									<option value="1">否</option>
+								</select>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="left"  style="font-size: 14px;">
+								控件默认值：
+							</td>
+							<td>
+								<input id="defaultvalue" name="defaultvalue" type="text"  maxlength="8" style="width: 150px;height:16px;font-size: 14px;"/> 
+							</td>
+							<td class="left"  style="font-size: 14px;">
+								是否子项：
+							</td>
+							<td>
+								<select id="isfield" name="isfield" onchange="changefieldstate()" style="width: 154px;height: 22px;font-size: 14px;">
+									<option value="0">是</option>
+									<option value="1">否</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="left"  style="font-size: 14px;">
+								控件子项值：
+							</td>
+							<td>
+								<input id="subfieldvalue" name="subfieldvalue" type="text"  maxlength="8" style="width: 150px;height:16px;font-size: 14px;"/> 
+							</td>
+							<td class="left"  style="font-size: 14px;">
+								控件子项名称：
+							</td>
+							<td>
+								<input id="subfieldname" name="subfieldname" type="text" maxlength="12" style="width: 150px;height: 16px;font-size: 14px;"/> 		
+							</td>
+						</tr>
+						<tr>
+							<td class="left"  style="font-size: 14px;">
+								子项排序值：
+							</td>
+							<td>
+								<input id="sortvalue" name="sortvalue" type="text" maxlength="12" style="width: 150px;height: 16px;font-size: 14px;"/> 
+							</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							&nbsp;
+						</td>
+					</tr>
+					 <tr>
+					 	<td align="center" colspan="4">
+					 		<input type="button" value="确定" class="btnClass5 mr23" onclick="javascript:setPageField()" />
+					 		<input type="reset" value="取消"  class="btnClass6" onclick="javascript:cancel()" />
+					 	</td>
+					 </tr>	
+					</table>
+				</center>
+				</div>
+			</div>
+		</div>
+	<script type="text/javascript" src="<%=path%>/common/js/jquery-1.4.1.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/common/js/common.js"></script>
+	<script type="text/javascript" src="<%=path %>/common/js/pageInfo.js"></script>
+    <script type="text/javascript" src="<%=path %>/common/widget/jqueryui/jquery.bgiframe-2.1.2.js"></script>
+	<script type="text/javascript" src="<%=path %>/common/widget/jqueryui/jquery-ui-1.8.15.custom.min.js"></script>
+	<script type="text/javascript" src="common/commonJs/glo_operPageField.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
