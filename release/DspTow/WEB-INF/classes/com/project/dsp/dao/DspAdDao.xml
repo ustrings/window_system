@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dsp.dao.DspAdDao" >
+
+  <sql id="Base_Column_List" >
+    id, name, prio, push_status, push_method, begin_time, end_time, set_num, url, push_num
+  </sql>
+  <sql id="Base_Column_ListDomain" >
+    id, ad_id, domain, push_num 
+  </sql>
+   
+  <select id="queryDspAdList" resultType="com.project.dsp.entity.Dsp_Ad" parameterType="com.project.dsp.entity.Dsp_Ad">
+  	SELECT 
+  	<include refid="Base_Column_List"></include>
+  	FROM dsp_ad 
+  	<where>
+  		<if test="id!= null and id != ''">
+  			AND id =#{id}
+  		</if>
+  		<if test="name!= null and name != ''">
+  			AND name like concat(cancat('%',#{name}),'%')
+  		</if>
+  		<if test="prio!= null and prio != ''">
+  			AND prio like  concat(cancat('%',#{prio}),'%')
+  		</if>
+  	</where>
+  </select>
+  <select id="queryAdbyDomaid" resultType="java.lang.String" parameterType="java.lang.Integer">
+  	select url 
+  	 from dsp_ad 
+  	 where id in
+  	 (select ad_id 
+  	  from dsp_domain 
+  	  where dsp_domain.id=#{domaid}
+  	 )
+  </select>
+  <select id="queryOneDspAdList" resultType="com.project.dsp.entity.Dsp_Ad" parameterType="java.lang.Integer">
+  	SELECT 
+  	<include refid="Base_Column_List"></include>
+  	FROM dsp_ad 
+  	WHERE id = #{id}
+  </select>
+  
+  <select id="queryOneDspAdListPrio" resultType="com.project.dsp.entity.Dsp_Ad" parameterType="java.lang.Integer">
+  	SELECT 
+  	<include refid="Base_Column_List"></include>
+  	FROM dsp_ad 
+  	WHERE prio = #{prio}
+  </select>
+  
+  <select id="queryOneDspDomainList" resultType="com.project.dsp.entity.Dsp_Domain" parameterType="java.lang.Integer">
+  	SELECT 
+  	<include refid="Base_Column_ListDomain"></include>
+  	FROM dsp_domain 
+  	WHERE ad_id = #{ad_id}
+  </select>
+  
+  <update id="updateDspAdStatus" parameterType="map" >
+    update dsp_ad
+    <set >
+      <if test="push_status != null and push_status == 0" >
+        push_status = 1
+      </if>
+      <if test="push_status != null and push_status == 1" >
+        push_status = 0
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  
+  <update id="updateDspAdNum" parameterType="java.lang.Integer" >
+    update dsp_ad
+    <set >
+      push_num = push_num+1
+    </set>
+    where id = #{id}
+  </update>
+  
+  <update id="updateDspDomainNum" parameterType="java.lang.Integer" >
+    update dsp_domain
+    <set >
+      push_num = push_num+1
+    </set>
+    where id = #{id}
+  </update>
+  
+  <insert id="insertDspAd" useGeneratedKeys="true" keyProperty="id" parameterType="com.project.dsp.entity.Dsp_Ad" >
+    insert into dsp_ad 
+    (
+    	name,prio,push_method,begin_time,end_time,set_num,url
+    )
+    values 
+    (
+    	#{name}, #{prio}, #{push_method}, #{begin_time}, #{end_time}, #{set_num}, #{url}
+    )
+  </insert>
+  
+   <insert id="insertDspDomain" parameterType="com.project.dsp.entity.Dsp_Domain" >
+    insert into dsp_domain 
+    (
+    	ad_id,domain
+    )
+    values 
+    (
+    	#{ad_id}, #{domain}
+    )
+  </insert>
+  <update id="updateDspAd" parameterType="com.project.dsp.entity.Dsp_Ad">
+  	update dsp_ad <set>
+  		name=#{name},prio=#{prio},push_method=#{push_method},begin_time=#{begin_time}
+  		,end_time=#{end_time},set_num= #{set_num},url=#{url}
+  	</set>
+  	<where>
+  		id=#{id}
+  	</where>
+  </update>
+  <update id="updateDspDomain" parameterType="com.project.dsp.entity.Dsp_Domain">
+  	update dsp_domain <set>
+  	 domain=#{domain}
+  	</set>
+  	<where>
+  	ad_id=#{ad_id}
+  	</where>
+  </update>
+  <delete id="deleteDspDomain" parameterType="java.lang.Integer" >
+    delete from dsp_domain
+    where ad_id = #{ad_id}
+  </delete>
+  
+  <delete id="deleteDspAd" parameterType="java.lang.Integer" >
+    delete from dsp_ad
+    where id = #{id}
+  </delete>
+  
+</mapper>

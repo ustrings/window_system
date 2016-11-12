@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dsp.dao.DspUsersDao" >
+
+  <sql id="Base_Column_List" >
+    userid, companyid, pid, username, password, nickname, regdate, lastdate, regip, lastip, loginnum, 
+    email, mobile, islock, vip, overduedate, status
+  </sql>
+   
+  <select id="queryDspUsersList" resultType="com.project.dsp.entity.Dsp_Users" parameterType="com.project.dsp.entity.Dsp_Users">
+  	SELECT 
+  	<include refid="Base_Column_List"></include>
+  	FROM dsp_users 
+  	WHERE 1=1 
+  	<if test="username != null and username != ''">
+  		AND username = #{username}
+  	</if>
+  	<if test="password != null and password != ''">
+  		AND password = PASSWORD(#{password})
+  	</if>
+  </select>
+  
+</mapper>
