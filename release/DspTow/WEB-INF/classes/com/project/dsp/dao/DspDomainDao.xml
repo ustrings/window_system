@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dsp.dao.DspDomainDao" >
+
+  <sql id="Base_Column_List" >
+    id, ad_id, domain, push_num 
+  </sql>
+   
+  <select id="queryDspDomainList" resultType="com.project.dsp.entity.Dsp_Domain">
+  	SELECT 
+  	<include refid="Base_Column_List"></include>
+  	FROM dsp_domain 
+  	<where>
+  	
+  		<if test="domain!= null and domain != ''">
+  			AND domain like  '%'+#{domain}+'%'
+  		</if>
+  	</where>
+  </select>
+  
+  
+  
+</mapper>
